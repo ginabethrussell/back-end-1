@@ -8,7 +8,7 @@ function getAllHowtos() {
 }
 
 //-----------------------------------------------------------------------------
-/*  Function gets Howto post by post id  */
+/*  gets Howto post by post id  */
 //-----------------------------------------------------------------------------
 function getHowtoById(id) {
     return db('howtos')
@@ -16,7 +16,7 @@ function getHowtoById(id) {
 }
 
 //-----------------------------------------------------------------------------
-/*  Function adds a howto post  */
+/*  adds a howto post  */
 //-----------------------------------------------------------------------------
 function addHowto(howto) {
     return db("howtos")

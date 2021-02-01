@@ -2,7 +2,7 @@ const db = require("../data/dbconfig");
 const uuid = require("uuid");
 
 //-----------------------------------------------------------------------------
-/*  Function finds users by their user id  */
+/*  finds users by their user id  */
 //-----------------------------------------------------------------------------
 function findById(id) {
   return db("users")
@@ -12,7 +12,7 @@ function findById(id) {
 }
 
 //-----------------------------------------------------------------------------
-/*  Function inserts user into the database with a generated uuid  */
+/*  inserts user into the database with a generated uuid  */
 //-----------------------------------------------------------------------------
 async function addUser(user) {
   const id = uuid.v4();
@@ -22,14 +22,14 @@ async function addUser(user) {
 }
 
 //-----------------------------------------------------------------------------
-/*  Function pulls all user accounts from database  */
+/*  pulls all user accounts from database  */
 //-----------------------------------------------------------------------------
 function allUsers() {
   return db("users");
 }
 
 //-----------------------------------------------------------------------------
-/*  Function finds users filtered by requested data  */
+/*  finds users filtered by requested data  */
 //-----------------------------------------------------------------------------
 function findUser(filter) {
   return db("users")
@@ -38,7 +38,7 @@ function findUser(filter) {
 }
 
 //-----------------------------------------------------------------------------
-/*  Function updates the users account information  */
+/*  updates the users account information  */
 //-----------------------------------------------------------------------------
 function updateUser(changes,  id) {
   return db("users")
@@ -47,7 +47,7 @@ function updateUser(changes,  id) {
 }
 
 //-----------------------------------------------------------------------------
-/*  Function removes user from database  */
+/*  removes user from database  */
 //-----------------------------------------------------------------------------
 function removeUser(id){
   return db('users')

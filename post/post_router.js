@@ -1,16 +1,16 @@
 const express = require("express");
-const db = require("./howto_m");
+const db = require("./post_models");
 
 /* restrict middleware  */
 const restrict = require("../middleware/restrict");
 
 
-const hr = express.Router();
+const router = express.Router();
 
 //-----------------------------------------------------------------------------
 // Returns all posts 
 //-----------------------------------------------------------------------------
-hr.get("/getall", async (req, res, next) => {
+router.get("/getall", async (req, res, next) => {
   try {
     const howtos = await db.getAllHowtos();
     res.status(200).json(howtos);
@@ -22,7 +22,7 @@ hr.get("/getall", async (req, res, next) => {
 //-----------------------------------------------------------------------------
 // Returns post by Id
 //-----------------------------------------------------------------------------
-hr.get("/gethowto/:id", (req, res) => {
+router.get("/gethowto/:id", (req, res) => {
   const { id } = req.params;
   db.getHowtoById(id)
     .then((howto) => {
@@ -44,7 +44,7 @@ hr.get("/gethowto/:id", (req, res) => {
 //-----------------------------------------------------------------------------
 // Posts a new; user = basic
 //-----------------------------------------------------------------------------
-hr.post("/new", restrict("basic"), (req, res) => {
+router.post("/new", restrict("basic"), (req, res) => {
   const howtoData = req.body;
 
   const author = req.token.username;
@@ -67,7 +67,7 @@ hr.post("/new", restrict("basic"), (req, res) => {
 //-----------------------------------------------------------------------------
 // Updates post;  user = basic 
 //-----------------------------------------------------------------------------
-hr.put("/update/:id", restrict("basic"), (req, res) => {
+router.put("/update/:id", restrict("basic"), (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
@@ -97,7 +97,7 @@ hr.put("/update/:id", restrict("basic"), (req, res) => {
 // Updates post;  user = admin
 //-----------------------------------------------------------------------------
 
-hr.delete("/delete/:id", restrict("basic"), (req, res) => {
+router.delete("/delete/:id", restrict("basic"), (req, res) => {
   const { id } = req.params;
 
   db.removeHowto(id)
@@ -121,4 +121,4 @@ hr.delete("/delete/:id", restrict("basic"), (req, res) => {
 });
 
 //-----------------------------------------------------------------------------
-module.exports = hr;
+module.exports = router;
